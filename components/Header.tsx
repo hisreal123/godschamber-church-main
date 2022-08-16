@@ -15,8 +15,9 @@ const Header: React.FC = () => {
     setToggle(!toggle);
   };
 
-  const changeColor = (ev: Event) => {
-    if (window.scrollY >= 300) {
+
+  const changeColor = () => {
+    if (typeof window !== "undefined" && window.scrollY >= 300) {
 			setMoveBg(false);
     } else {
       setMoveBg(true);
