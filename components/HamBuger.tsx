@@ -3,7 +3,7 @@ import React, { useState } from "react";
 // TODO: Fix toggle from whatever
 
 type HamBugerProps = {
-  handleClick: () => {};
+  handleClick: () => void;
   toggle: string;
 };
 const HamBuger: React.FC<HamBugerProps> = ({ handleClick, toggle }) => {

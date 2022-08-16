@@ -15,14 +15,27 @@ const Header: React.FC = () => {
     setToggle(!toggle);
   };
 
+
   const changeColor = () => {
-    if (window.scrollY >= 300) {
-      setMoveBg(false);
+    if (typeof window !== "undefined" && window.scrollY >= 300) {
+			setMoveBg(false);
     } else {
       setMoveBg(true);
     }
-  };
-  window.addEventListener("scroll", changeColor);
+	};
+	
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			window.addEventListener("scroll", changeColor);
+		}
+
+		// Clean up function
+		return () => {
+			if (typeof window !== "undefined") {
+				window.removeEventListener("scroll", changeColor);
+			}
+		}
+	}, [])
 
   //  variable style for CustomStyle from ListItems Component
   const LinkStyle =
@@ -37,7 +50,7 @@ const Header: React.FC = () => {
       >
         <Logo />
         <div className="md:hidden">
-          <HamBuger handleClick={handleToggle} />
+          <HamBuger handleClick={handleToggle} toggle="your toggle string goes here" />
         </div>
 
         <div className="hidden md:flex md:items-center transition-all duration-500 ">
